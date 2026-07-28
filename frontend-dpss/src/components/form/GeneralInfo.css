@@ -1,0 +1,80 @@
+.form-section{
+
+    max-width:1200px;
+
+    margin:30px auto;
+
+    background:white;
+
+    border:2px solid #12A8E3;
+
+}
+
+.section-title{
+
+    background:white;
+
+    color:#000;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    padding:15px;
+
+    border-bottom:4px solid #12A8E3;
+
+}
+
+.general-grid{
+
+    display:grid;
+
+    grid-template-columns:220px 1fr;
+
+}
+
+.general-grid label{
+
+    padding:18px;
+
+    border:1px solid #ccc;
+
+    font-weight:bold;
+
+    text-align:right;
+
+}
+
+.general-grid input{
+
+    border:1px solid #ccc;
+
+    padding:15px;
+
+    font-size:18px;
+
+    outline:none;
+
+}
+
+.general-grid input:focus{
+
+    border:2px solid #12A8E3;
+
+}
+.general-grid input{
+
+    direction: rtl;
+
+    text-align: right;
+
+}
+
+.general-grid label{
+
+    direction: rtl;
+
+    text-align: right;
+
+}

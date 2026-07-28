@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:'Cairo',sans-serif;
+    direction: rtl;
+    text-align: right;
+    background:#f5f7fa;
+    color:#222;
+}
+
+#root{
+
+    min-height:100vh;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+button{
+
+    font-family:'Cairo',sans-serif;
+
+    cursor:pointer;
+
+}
+
+input,
+select,
+textarea{
+
+    font-family:'Cairo',sans-serif;
+
+}
+
+.app{
+    direction: rtl;
+    text-align: right;
+}
+
+.submit-container{
+
+    width:1200px;
+
+    margin:40px auto;
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+.submit-btn{
+
+    background:#077505;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 30px;
+
+    font-size:16px;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.submit-btn:hover{
+
+    background:#068cc2;
+
+}

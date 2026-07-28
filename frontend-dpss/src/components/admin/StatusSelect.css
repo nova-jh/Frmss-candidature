@@ -1,0 +1,25 @@
+.status-select{
+
+    padding:8px 12px;
+
+    border-radius:8px;
+
+    border:1px solid #cfcfcf;
+
+    background:white;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    min-width:170px;
+
+}
+
+.status-select:focus{
+
+    outline:none;
+
+    border-color:#0F4C81;
+
+}

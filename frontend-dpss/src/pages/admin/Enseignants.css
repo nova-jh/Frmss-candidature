@@ -1,0 +1,99 @@
+.page-title {
+    color: #0F4C81;
+    margin-bottom: 25px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* =======================
+   Tableau
+======================= */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.admin-table thead {
+    background: #0F4C81;
+    color: white;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 14px;
+    text-align: center;
+}
+
+.admin-table td {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.admin-table tbody tr:hover {
+    background: #f4f8fd;
+}
+
+
+
+/* =======================
+   Boutons
+======================= */
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-btn {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.25s;
+    color: white;
+}
+
+.view-btn {
+    background: #3498db;
+}
+
+
+
+.delete-btn {
+    background: #d63031;
+}
+
+.action-btn:hover {
+    transform: scale(1.05);
+}
+
+.enseignant-export-btn {
+    background: #198754;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.25s;
+}
+
+.enseignant-export-btn:hover {
+    background: #146c43;
+    transform: translateY(-2px);
+}

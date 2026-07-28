@@ -1,0 +1,41 @@
+.classement-table-container{
+
+    overflow-x:auto;
+
+}
+
+.classement-table{
+
+    width:max-content;
+
+    min-width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.classement-table th{
+
+    background:#0b5ed7;
+
+    color:white;
+
+    padding:12px;
+
+    white-space:nowrap;
+
+}
+
+.classement-table td{
+
+    border:1px solid #ddd;
+
+    padding:10px;
+
+    text-align:center;
+
+    vertical-align:top;
+
+    white-space:nowrap;
+
+}

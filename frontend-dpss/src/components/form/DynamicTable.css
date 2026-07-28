@@ -1,0 +1,81 @@
+.sport-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.sport-table th{
+
+    background:#12A8E3;
+
+    color:white;
+
+    padding:14px;
+
+    border:1px solid #ddd;
+
+}
+
+.sport-table td{
+
+    border:1px solid #ddd;
+
+}
+
+.sport-table input{
+
+    width:100%;
+
+    border:none;
+
+    padding:12px;
+
+    font-size:16px;
+
+    direction:rtl;
+
+    text-align:right;
+
+}
+
+.sport-table input:focus{
+
+    outline:none;
+
+    background:#f2fbff;
+
+}
+
+.add-btn{
+
+    margin:8px;
+
+    padding:5px 12px;
+
+    background:#12A8E3;
+
+    color:white;
+
+    border:none;
+
+    border-radius:6px;
+
+    font-size:13px;
+
+}
+
+.delete-btn{
+
+    background:#d63031;
+
+    color:white;
+
+    border:none;
+
+    border-radius:6px;
+
+    padding:8px 14px;
+
+}

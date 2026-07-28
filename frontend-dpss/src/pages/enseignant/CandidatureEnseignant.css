@@ -1,0 +1,315 @@
+.enseignant-page{
+
+    direction: rtl;
+
+    background:#f5f7fb;
+
+    min-height:100vh;
+
+    padding:40px 0;
+
+}
+
+.enseignant-page .enseignant-form{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.enseignant-page .enseignant-header{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+    margin-bottom:25px;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.enseignant-page .logos{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.enseignant-page .logo-left{
+
+    width:90px;
+
+}
+
+.enseignant-page .logo-right{
+
+    width:90px;
+
+}
+
+.enseignant-page .header-title{
+
+    text-align:center;
+
+}
+
+.enseignant-page .header-title h1{
+
+    color:#0F4C81;
+
+    margin-top:15px;
+
+    font-size:28px;
+
+}
+
+.enseignant-page .header-title h2{
+
+    color:#0F4C81;
+
+    margin-bottom:15px;
+
+}
+
+.enseignant-page .header-title h3{
+
+    font-weight:500;
+
+    margin:8px 0;
+
+}
+
+.enseignant-page .section{
+
+    margin-top:35px;
+
+}
+
+.enseignant-page .section-title{
+
+    background:#0F4C81;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    margin-bottom:25px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+.enseignant-page .general-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:20px;
+
+}
+
+.enseignant-page .field{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.enseignant-page .field label{
+
+    margin-bottom:8px;
+
+    font-weight:bold;
+
+    color:#333;
+
+}
+
+.enseignant-page .field input{
+
+    padding:12px;
+
+    border:1px solid #d6d6d6;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.2s;
+
+}
+
+.enseignant-page .field input:focus{
+
+    border-color:#0F4C81;
+
+}
+
+.enseignant-page .result-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:15px;
+
+}
+
+.enseignant-page .result-table thead{
+
+    background:#0F4C81;
+
+    color:white;
+
+}
+
+.enseignant-page .result-table th{
+
+    padding:14px;
+
+}
+
+.enseignant-page .result-table td{
+
+    padding:12px;
+
+    border:1px solid #e5e5e5;
+
+}
+
+.enseignant-page .result-table input{
+
+    width:100%;
+
+    padding:10px;
+
+    border:1px solid #d8d8d8;
+
+    border-radius:6px;
+
+}
+
+.enseignant-page .table-buttons{
+
+    margin-top:20px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+}
+
+.enseignant-page .add-line{
+
+    background:#0F4C81;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+}
+
+.enseignant-page .add-line:hover{
+
+    background:#0d3d67;
+
+}
+
+.enseignant-page .delete-line{
+
+    background:#d63031;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.enseignant-page .delete-line:hover{
+
+    background:#b71c1c;
+
+}
+
+.enseignant-page .submit-zone{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:40px;
+
+}
+
+.enseignant-page .submit-btn{
+
+    background:#2E7D32;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 28px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+}
+
+.enseignant-page .submit-btn:hover{
+
+    background:#256628;
+
+}

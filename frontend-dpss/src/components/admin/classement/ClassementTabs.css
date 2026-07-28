@@ -1,0 +1,97 @@
+.classement-section{
+
+    margin-top:70px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+.classement-title{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+    color:#0b5ed7;
+
+}
+
+.tabs{
+
+    display:flex;
+
+    gap:15px;
+
+    justify-content:center;
+
+    margin-bottom:30px;
+
+}
+
+.tabs button{
+
+    border:none;
+
+    background:#ececec;
+
+    padding:12px 22px;
+
+    cursor:pointer;
+
+    border-radius:8px;
+
+    transition:.3s;
+
+    font-weight:bold;
+
+}
+
+.tabs button.active{
+
+    background:#0b5ed7;
+
+    color:white;
+
+}
+
+.export-container{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-bottom:20px;
+
+}
+
+.excel-btn{
+
+    background:#198754;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.table-placeholder{
+
+    min-height:450px;
+
+    border:2px dashed #d5d5d5;
+
+    border-radius:10px;
+
+}

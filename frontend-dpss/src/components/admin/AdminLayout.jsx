@@ -13,7 +13,7 @@ export default function AdminLayout({ children }) {
 
             <Sidebar
                 isOpen={sidebarOpen}
-                onToggle={() => setSidebarOpen(!sidebarOpen)}
+                onToggle={() => setSidebarOpen((open) => !open)}
             />
 
             <div

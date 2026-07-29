@@ -7,108 +7,52 @@ import ministereLogo from "../../assets/ministry-sans-fe.png";
 import frmssLogo from "../../assets/frmss.png";
 
 export default function Home() {
+  return (
+    <div className="home">
+      <div className="home-header">
+        <div className="logos">
+          <img src={ministereLogo} alt="Ministère" />
+          <img src={frmssLogo} alt="FRMSS" />
+        </div>
+        <h1>الجامعة الملكية المغربية للرياضة المدرسية</h1>
+        <p>منصة تدبير طلبات الترشيح</p>
+      </div>
 
-    return (
-
-        <div className="home">
-
-            <header className="home-header">
-                <div className="logos">
-                    <img src={ministereLogo} alt="Ministère"/>
-                    <img src={dpssLogo} alt="DPSS" />
-                </div>
-
-                <h1>
-
-                   الجامعة الملكية المغربية للرياضة المدرسية
-
-                </h1>
-
-                <p>
-
-                    منصة تدبير طلبات الترشيح
-
-                </p>
-
-            </header>
-
-            <div className="cards">
-
-                <div className="card">
-
-                    <div className="icon">
-                        <FaGraduationCap />
-                    </div>
-
-                    <h2>
-
-                        بطاقة طلب الحصول على منحة التميز الدراسي والرياضي
-
-                    </h2>
-
-                    <Link to="/etudiant">
-
-                        <button>
-
-                            الدخول إلى الاستمارة
-
-                        </button>
-
-                    </Link>
-
-                </div>
-
-                <div className="card">
-
-                    <div className="icon">
-                        <FaMedal />
-                    </div>
-
-                    <h2>
-
-                        بطاقة الترشيح لجوائز التميز الخاصة بالأساتذة
-
-                    </h2>
-
-                    <Link to="/enseignant">
-                    <button>
-                         الدخول إلى الاستمارة
-                    </button>
-                    </Link>
-
-                </div>
-
-                <div className="card">
-
-                    <div className="icon">
-                        <MdAdminPanelSettings />
-                    </div>
-
-                    <h2>
-
-                        فضاء الإدارة
-
-                    </h2>
-
-                    <Link to="/admin/login">
-
-                        <button>
-
-                            تسجيل الدخول
-
-                        </button>
-
-                    </Link>
-
-                </div>
-
-            </div>
-            <footer className="footer">
-                © 2026 - مديرية الارتقاء بالرياضة المدرسية
-            </footer>
-
+      <div className="cards">
+        <div className="card">
+          <div className="icon">
+            <FaGraduationCap />
+          </div>
+          <h2>بطاقة طلب الحصول على منحة التميز الدراسي والرياضي</h2>
+          <Link to="/etudiant/candidature">
+            <button>الدخول إلى الاستمارة</button>
+          </Link>
         </div>
 
-    );
+        <div className="card">
+          <div className="icon">
+            <FaMedal />
+          </div>
+          <h2>بطاقة الترشيح لجوائز التميز الخاصة بالأساتذة</h2>
+          <Link to="/enseignant/candidature">
+            <button>الدخول إلى الاستمارة</button>
+          </Link>
+        </div>
 
+        <div className="card">
+          <div className="icon">
+            <MdAdminPanelSettings />
+          </div>
+          <h2>فضاء الإدارة</h2>
+          <Link to="/admin/login">
+            <button>تسجيل الدخول</button>
+          </Link>
+        </div>
+      </div>
+
+      <div className="footer">
+        © 2026 - الجامعة الملكية المغربية للرياضة المدرسية
+      </div>
+    </div>
+  );
 }

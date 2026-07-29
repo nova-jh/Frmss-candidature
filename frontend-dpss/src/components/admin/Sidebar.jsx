@@ -19,7 +19,7 @@ export default function Sidebar({ isOpen, onToggle }) {
       <div className="sidebar-header">
 
         <div className="logo">
-          🛡️
+          <img src={frmssLogo} alt="FRMSS" className="sidebar-logo-img" />
         </div>
 
         {isOpen && (

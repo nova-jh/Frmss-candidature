@@ -10,42 +10,28 @@ import Enseignants from "./pages/admin/Enseignants";
 import Settings from "./pages/admin/Settings";
 
 function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Candidat */}
+        <Route path="/" element={<Home />} />
+        <Route path="/etudiant/candidature" element={<CandidatureForm />} />
 
-    return (
+        {/* Enseignant */}
+        <Route
+          path="/enseignant/candidature"
+          element={<CandidatureEnseignant />}
+        />
+        <Route path="/admin/enseignants" element={<Enseignants />} />
 
-        <BrowserRouter>
-
-            <Routes>
-
-                {/* Candidat */}
-                <Route path="/" element={<Home />} />
-                <Route path="/etudiant" element={<CandidatureForm />} />
-
-
-                {/* Enseignant */}
-                <Route
-                    path="/enseignant"
-                    element={<CandidatureEnseignant />}
-                />
-                <Route path="/admin/enseignants" element={<Enseignants />} />
-                
-
-
-                {/* Administration */}
-                <Route path="/admin/login" element={<Login />} />
-
-                <Route path="/admin/dashboard" element={<Dashboard />} />
-
-                <Route path="/admin/etudiants" element={<Etudiants />} />
-                
-                <Route path="/admin/settings" element={<Settings />} />
-
-            </Routes>
-
-        </BrowserRouter>
-
-    );
-
+        {/* Administration */}
+        <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin/etudiants" element={<Etudiants />} />
+        <Route path="/admin/settings" element={<Settings />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

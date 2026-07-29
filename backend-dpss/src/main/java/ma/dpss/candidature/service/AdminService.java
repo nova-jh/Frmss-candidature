@@ -20,25 +20,29 @@ public class AdminService {
 
     public Admin login(LoginRequest request) {
         Admin admin = adminRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ ØºÙŠØ± ØµØ­ÙŠØ­"));
+                .orElseThrow(() -> new RuntimeException("البريد الإلكتروني غير صحيح"));
 
         if (!passwordEncoder.matches(request.getPassword(), admin.getPassword())) {
-            throw new RuntimeException("ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ± ØºÙŠØ± ØµØ­ÙŠØ­Ø©");
+            throw new RuntimeException("كلمة المرور غير صحيحة");
         }
 
         return admin;
     }
 
     public Admin updateEmail(String adminId, String newEmail) {
-        Admin admin = adminRepository.findById(adminId)
-                .orElseThrow(() -> new RuntimeException("Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯"));
+        if (newEmail == null || newEmail.isBlank()) {
+            throw new RuntimeException("يرجى إدخال بريد إلكتروني صحيح");
+        }
 
-        // Check if the new email is already taken by another admin
-        adminRepository.findByEmail(newEmail).ifPresent(existing -> {
-            if (!existing.getId().equals(adminId)) {
-                throw new RuntimeException("Ù‡Ø°Ø§ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ Ù…Ø³ØªØ®Ø¯Ù… Ø¨Ø§Ù„ÙØ¹Ù„");
+        Admin admin = adminRepository.findById(adminId)
+                .orElseThrow(() -> new RuntimeException("المستخدم غير موجود"));
+
+        adminRepository.findByEmail(newEmail).ifPresent(existingAdmin -> {
+            if (!existingAdmin.getId().equals(adminId)) {
+                throw new RuntimeException("هذا البريد الإلكتروني مستخدم بالفعل");
             }
         });
+
 
         admin.setEmail(newEmail);
         return adminRepository.save(admin);
@@ -46,10 +50,10 @@ public class AdminService {
 
     public void updatePassword(String adminId, String currentPassword, String newPassword) {
         Admin admin = adminRepository.findById(adminId)
-                .orElseThrow(() -> new RuntimeException("Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯"));
+                .orElseThrow(() -> new RuntimeException("المستخدم غير موجود"));
 
         if (!passwordEncoder.matches(currentPassword, admin.getPassword())) {
-            throw new RuntimeException("ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ± Ø§Ù„Ø­Ø§Ù„ÙŠØ© ØºÙŠØ± ØµØ­ÙŠØ­Ø©");
+            throw new RuntimeException("كلمة المرور الحالية غير صحيحة");
         }
 
         admin.setPassword(passwordEncoder.encode(newPassword));

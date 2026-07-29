@@ -16,7 +16,7 @@ export default function ResultatsNationaux({
 
             <div className="section-title">
 
-                2. الإنجازات في البطولات الوطنية للرياضة المدرسية
+                2.  الإنجازات في البطولات الوطنية الرياضة المدرسية خلال ثلاث مواسم متتالية
 
             </div>
 

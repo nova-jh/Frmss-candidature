@@ -1,11 +1,12 @@
 package ma.dpss.candidature.controller;
 
 import ma.dpss.candidature.dto.LoginRequest;
+import ma.dpss.candidature.dto.UpdateEmailRequest;
+import ma.dpss.candidature.dto.UpdatePasswordRequest;
 import ma.dpss.candidature.model.Admin;
 import ma.dpss.candidature.service.AdminService;
 import ma.dpss.candidature.service.CandidatureService;
-import ma.dpss.candidature.dto.UpdateEmailRequest;
-import ma.dpss.candidature.dto.UpdatePasswordRequest;
+
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -54,7 +55,7 @@ public class AdminController {
     public ResponseEntity<?> updatePassword(@PathVariable String id, @RequestBody UpdatePasswordRequest request) {
         try {
             adminService.updatePassword(id, request.getCurrentPassword(), request.getNewPassword());
-            return ResponseEntity.ok("ØªÙ… ØªØºÙŠÙŠØ± ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ± Ø¨Ù†Ø¬Ø§Ø­");
+            return ResponseEntity.ok("تم تغيير كلمة المرور بنجاح");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

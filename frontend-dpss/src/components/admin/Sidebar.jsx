@@ -17,7 +17,7 @@ export default function Sidebar({ isOpen, onToggle }) {
 
         {isOpen && (
           <>
-            <h2>منصة DPSS</h2>
+            <h2>منصة FRMSS</h2>
             <p>فضاء الإدارة</p>
           </>
         )}
@@ -36,6 +36,9 @@ export default function Sidebar({ isOpen, onToggle }) {
 
         <NavLink to="/admin/enseignants" className="menu-item">
           👨‍🏫 {isOpen && <span>طلبات الأساتذة</span>}
+        </NavLink>
+        <NavLink to="/admin/settings" className="menu-item">
+        ⚙️ {isOpen && "الإعدادات"}
         </NavLink>
 
       </nav>

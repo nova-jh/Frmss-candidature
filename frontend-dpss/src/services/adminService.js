@@ -23,6 +23,17 @@ const adminService = {
     getDashboardStats: () => {
         return api.get(`${ADMIN_URL}/dashboard`);
     },
+     // Settings endpoints
+    updateEmail: (adminId, newEmail) => {
+        return api.put(`/admin/${adminId}/email`, { email: newEmail });
+    },
+    
+    updatePassword: (adminId, currentPassword, newPassword) => {
+        return api.put(`/admin/${adminId}/password`, {
+            currentPassword,
+            newPassword,
+        });
+    },
 
 };
 

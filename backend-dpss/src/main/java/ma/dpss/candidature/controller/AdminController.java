@@ -4,6 +4,8 @@ import ma.dpss.candidature.dto.LoginRequest;
 import ma.dpss.candidature.model.Admin;
 import ma.dpss.candidature.service.AdminService;
 import ma.dpss.candidature.service.CandidatureService;
+import ma.dpss.candidature.dto.UpdateEmailRequest;
+import ma.dpss.candidature.dto.UpdatePasswordRequest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +38,26 @@ public class AdminController {
     @GetMapping("/dashboard")
     public ResponseEntity<?> getDashboardStats() {
         return ResponseEntity.ok(candidatureService.getDashboardStats());
+    }
+
+    @PutMapping("/{id}/email")
+    public ResponseEntity<?> updateEmail(@PathVariable String id, @RequestBody UpdateEmailRequest request) {
+        try {
+            Admin updated = adminService.updateEmail(id, request.getEmail());
+            return ResponseEntity.ok(updated);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}/password")
+    public ResponseEntity<?> updatePassword(@PathVariable String id, @RequestBody UpdatePasswordRequest request) {
+        try {
+            adminService.updatePassword(id, request.getCurrentPassword(), request.getNewPassword());
+            return ResponseEntity.ok("ØªÙ… ØªØºÙŠÙŠØ± ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ± Ø¨Ù†Ø¬Ø§Ø­");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
 }

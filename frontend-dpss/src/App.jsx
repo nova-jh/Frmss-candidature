@@ -7,6 +7,7 @@ import Etudiants from "./pages/admin/Etudiants";
 import Home from "./pages/home/Home";
 import CandidatureEnseignant from "./pages/enseignant/CandidatureEnseignant";
 import Enseignants from "./pages/admin/Enseignants";
+import Settings from "./pages/admin/Settings";
 
 function App() {
 
@@ -36,6 +37,8 @@ function App() {
                 <Route path="/admin/dashboard" element={<Dashboard />} />
 
                 <Route path="/admin/etudiants" element={<Etudiants />} />
+                
+                <Route path="/admin/settings" element={<Settings />} />
 
             </Routes>
 

@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Login.css"
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
+import frmssLogo from "../../assets/frmss.png";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -28,10 +29,10 @@ export default function Login() {
       <div className="login-card">
 
         <div className="logo-admin">
-           🛡️
+           <img src={frmssLogo} alt="FRMSS" className="login-logo-img" />
         </div>
 
-        <h1>منصة مديرية النهوض بالرياضة المدرسية</h1>
+        <h1>منصة الجامعة الملكية المغربية للرياضة المدرسية</h1>
 
         <h2>فضاء الإدارة</h2>
 

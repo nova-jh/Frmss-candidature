@@ -3,8 +3,8 @@ import "./Home.css";
 import { FaGraduationCap } from "react-icons/fa";
 import { FaMedal } from "react-icons/fa";
 import { MdAdminPanelSettings } from "react-icons/md";
-import ministereLogo from "../../assets/ministry.png";
-import dpssLogo from "../../assets/frmssLogo.jpg";
+import ministereLogo from "../../assets/ministry-sans-fe.png";
+import frmssLogo from "../../assets/frmss.png";
 
 export default function Home() {
 

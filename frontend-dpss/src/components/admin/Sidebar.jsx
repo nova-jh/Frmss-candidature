@@ -1,7 +1,14 @@
 import "./Sidebar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Sidebar({ isOpen, onToggle }) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("admin");
+    navigate("/");
+  };
+
   return (
     <aside className={`sidebar ${isOpen ? "open" : "closed"}`} dir="rtl">
 
@@ -44,11 +51,9 @@ export default function Sidebar({ isOpen, onToggle }) {
       </nav>
 
       <div className="sidebar-footer">
-
-        <button className="logout-btn">
+        <button className="logout-btn" onClick={handleLogout}>
           🚪 {isOpen && "تسجيل الخروج"}
         </button>
-
       </div>
 
     </aside>

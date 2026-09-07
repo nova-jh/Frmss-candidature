@@ -19,7 +19,13 @@ export default function Login() {
         localStorage.setItem("admin", JSON.stringify(response.data));
         navigate("/admin/dashboard");
     } catch (err) {
-        alert(err.response?.data || "Email ou mot de passe incorrect");
+      if (!err.response) {
+        alert("Impossible de contacter le serveur. Vérifiez que Spring Boot est démarré.");
+      } else if (err.response.status === 401) {
+        alert("Email ou mot de passe incorrect");
+      } else {
+        alert("Une erreur serveur est survenue. Veuillez réessayer.");
+      }
     }
   };
 

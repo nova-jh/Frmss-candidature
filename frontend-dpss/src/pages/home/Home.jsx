@@ -3,7 +3,6 @@ import "./Home.css";
 import { FaGraduationCap } from "react-icons/fa";
 import { FaMedal } from "react-icons/fa";
 import { MdAdminPanelSettings } from "react-icons/md";
-import ministereLogo from "../../assets/ministry-sans-fe.png";
 import frmssLogo from "../../assets/frmss.png";
 
 export default function Home() {
@@ -11,8 +10,7 @@ export default function Home() {
     <div className="home">
       <div className="home-header">
         <div className="logos">
-          <img src={ministereLogo} alt="Ministère" />
-          <img src={frmssLogo} alt="FRMSS" />
+          <img src={frmssLogo} alt="Logo FRMSS" />
         </div>
         <h1>الجامعة الملكية المغربية للرياضة المدرسية</h1>
         <p>منصة تدبير طلبات الترشيح</p>

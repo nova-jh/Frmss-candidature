@@ -8,14 +8,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 70px;
   margin-bottom: 30px;
 }
 
-.logos img {
-  height: 90px;
+.home .logos img {
+  height: 125px;
+  width: auto;
   object-fit: contain;
   background: transparent;
+}
+
+@media (max-width: 600px) {
+  .home .logos img {
+    height: 105px;
+  }
 }
 
 .home-header {

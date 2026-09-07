@@ -1,4 +1,3 @@
-import ministereLogo from "../../assets/ministry.png";
 import dpssLogo from "../../assets/frmssLogo.jpg";
 
 export default function HeaderEnseignant() {
@@ -8,16 +7,9 @@ export default function HeaderEnseignant() {
         <div className="enseignant-header">
 
             <div className="logos">
-
-                <img
-                    src={ministereLogo}
-                    alt=""
-                    className="logo-left"
-                />
-
                 <img
                     src={dpssLogo}
-                    alt=""
+                    alt="Logo FRMSS"
                     className="logo-right"
                 />
 
@@ -38,8 +30,8 @@ export default function HeaderEnseignant() {
                     خلال المواسم الدراسية التالية
                 </h3>
 
-                <h1>
-                    2025-2026 / 2026-2027
+                <h1 dir="ltr">
+                    2025-2026 / 2024-2025 / 2023-2024
                 </h1>
 
             </div>

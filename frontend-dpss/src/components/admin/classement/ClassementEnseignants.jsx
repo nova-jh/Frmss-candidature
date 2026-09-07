@@ -6,24 +6,19 @@ export default function ClassementEnseignants() {
     const [classement, setClassement] = useState([]);
 
     useEffect(() => {
-        charger();
+        let cancelled = false;
+        enseignantService.getClassement()
+            .then((response) => {
+                if (!cancelled) {
+                    setClassement(response.data);
+                }
+            })
+            .catch((error) => console.error(error));
+
+        return () => {
+            cancelled = true;
+        };
     }, []);
-
-    async function charger() {
-
-        try {
-
-            const response = await enseignantService.getClassement();
-
-            setClassement(response.data);
-
-        } catch (error) {
-
-            console.error(error);
-
-        }
-
-    }
 
     async function exporterExcel() {
 
@@ -46,6 +41,8 @@ export default function ClassementEnseignants() {
             link.click();
 
             link.remove();
+
+            window.URL.revokeObjectURL(url);
 
         } catch (error) {
 

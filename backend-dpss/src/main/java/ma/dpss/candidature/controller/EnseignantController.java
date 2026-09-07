@@ -1,8 +1,10 @@
 package ma.dpss.candidature.controller;
 
+import jakarta.validation.Valid;
 import ma.dpss.candidature.model.Enseignant;
 import ma.dpss.candidature.service.EnseignantExcelExportService;
 import ma.dpss.candidature.service.EnseignantService;
+import ma.dpss.candidature.service.ApplicationSettingsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,28 +14,36 @@ import org.springframework.http.MediaType;
 
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/enseignants")
-@CrossOrigin(origins="*")
 public class EnseignantController {
 
     private final EnseignantService enseignantService;
     private final EnseignantExcelExportService enseignantExcelExportService;
+    private final ApplicationSettingsService settingsService;
 
     public EnseignantController(
             EnseignantService enseignantService,
-            EnseignantExcelExportService enseignantExcelExportService){
+            EnseignantExcelExportService enseignantExcelExportService,
+            ApplicationSettingsService settingsService){
 
         this.enseignantService = enseignantService;
         this.enseignantExcelExportService = enseignantExcelExportService;
+        this.settingsService = settingsService;
 
     }
 
     @PostMapping
-    public ResponseEntity<Enseignant> ajouter(
+    public ResponseEntity<?> ajouter(
 
-            @RequestBody Enseignant enseignant){
+            @Valid @RequestBody Enseignant enseignant){
+
+        if (!settingsService.areApplicationsOpen()) {
+            return ResponseEntity.status(403)
+                    .body(Map.of("message", "باب الترشيحات مغلق حاليا"));
+        }
 
         return ResponseEntity.ok(
 

@@ -1,24 +1,45 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import AdminLayout from "../../components/admin/AdminLayout";
 import "./Settings.css";
 import adminService from "../../services/adminService";
+import applicationSettingsService from "../../services/applicationSettingsService";
+
+function getStoredAdmin() {
+  try {
+    return JSON.parse(localStorage.getItem("admin"));
+  } catch {
+    localStorage.removeItem("admin");
+    return null;
+  }
+}
 
 export default function Settings() {
-  const [admin, setAdmin] = useState(null);
-  const [email, setEmail] = useState("");
+  const [admin, setAdmin] = useState(getStoredAdmin);
+  const [email, setEmail] = useState(() => getStoredAdmin()?.email || "");
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
   const [loading, setLoading] = useState(false);
+  const [applicationsOpen, setApplicationsOpen] = useState(null);
+  const [statusLoading, setStatusLoading] = useState(false);
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("admin"));
-    if (stored) {
-      setAdmin(stored);
-      setEmail(stored.email || "");
-    }
+    let cancelled = false;
+    applicationSettingsService.getStatus()
+      .then((response) => {
+        if (!cancelled) setApplicationsOpen(response.data.open);
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setMessage("تعذر تحميل حالة الترشيحات");
+          setMessageType("error");
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const showMessage = (msg, type) => {
@@ -35,7 +56,7 @@ export default function Settings() {
     }
     setLoading(true);
     try {
-      const response = await adminService.updateEmail(admin.id, email);
+      await adminService.updateEmail(admin.id, email);
       const updatedAdmin = { ...admin, email };
       localStorage.setItem("admin", JSON.stringify(updatedAdmin));
       setAdmin(updatedAdmin);
@@ -57,8 +78,8 @@ export default function Settings() {
       showMessage("كلمة المرور الجديدة غير متطابقة", "error");
       return;
     }
-    if (newPassword.length < 6) {
-      showMessage("كلمة المرور يجب أن تكون 6 أحرف على الأقل", "error");
+    if (newPassword.length < 8) {
+      showMessage("كلمة المرور يجب أن تكون 8 أحرف على الأقل", "error");
       return;
     }
     setLoading(true);
@@ -75,6 +96,23 @@ export default function Settings() {
     }
   };
 
+  const handleToggleApplications = async () => {
+    if (applicationsOpen === null) return;
+    setStatusLoading(true);
+    try {
+      const response = await applicationSettingsService.updateStatus(!applicationsOpen);
+      setApplicationsOpen(response.data.open);
+      showMessage(
+        response.data.open ? "تم فتح باب الترشيحات" : "تم إغلاق باب الترشيحات",
+        "success"
+      );
+    } catch (err) {
+      showMessage(err.response?.data || "تعذر تغيير حالة الترشيحات", "error");
+    } finally {
+      setStatusLoading(false);
+    }
+  };
+
   return (
     <AdminLayout>
       <div className="settings-container">
@@ -85,6 +123,29 @@ export default function Settings() {
             {message}
           </div>
         )}
+
+        <div className={`settings-section applications-control ${applicationsOpen ? "open" : "closed"}`}>
+          <h2>📋 استقبال الترشيحات</h2>
+          <p className="applications-state">
+            {applicationsOpen === null
+              ? "جاري تحميل الحالة..."
+              : applicationsOpen
+                ? "باب الترشيحات مفتوح حاليا للطلبة والأساتذة."
+                : "باب الترشيحات مغلق حاليا ولا يمكن إرسال طلبات جديدة."}
+          </p>
+          <button
+            type="button"
+            className={`settings-btn status-toggle-btn ${applicationsOpen ? "close" : "open"}`}
+            onClick={handleToggleApplications}
+            disabled={statusLoading || applicationsOpen === null}
+          >
+            {statusLoading
+              ? "جاري التحديث..."
+              : applicationsOpen
+                ? "إغلاق باب الترشيحات"
+                : "فتح باب الترشيحات"}
+          </button>
+        </div>
 
         <div className="settings-section">
           <h2>📧 تغيير البريد الإلكتروني</h2>

@@ -16,10 +16,6 @@ export default function Etudiants() {
     const [selectedCandidature, setSelectedCandidature] = useState(null);
     const [openModal, setOpenModal] = useState(false);
 
-    useEffect(() => {
-        charger();
-    }, []);
-
     async function charger() {
         try {
             const response = await adminService.getAllCandidatures();
@@ -28,6 +24,21 @@ export default function Etudiants() {
             console.error(error);
         }
     }
+
+    useEffect(() => {
+        let cancelled = false;
+        adminService.getAllCandidatures()
+            .then((response) => {
+                if (!cancelled) {
+                    setCandidatures(response.data);
+                }
+            })
+            .catch((error) => console.error(error));
+
+        return () => {
+            cancelled = true;
+        };
+    }, []);
 
     async function supprimerCandidature(id) {
         const confirmation = window.confirm("هل تريد فعلاً حذف هذا الطلب؟");

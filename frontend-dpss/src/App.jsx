@@ -8,6 +8,11 @@ import Home from "./pages/home/Home";
 import CandidatureEnseignant from "./pages/enseignant/CandidatureEnseignant";
 import Enseignants from "./pages/admin/Enseignants";
 import Settings from "./pages/admin/Settings";
+import ProtectedAdminRoute from "./components/admin/ProtectedAdminRoute";
+
+const protectedPage = (page) => (
+  <ProtectedAdminRoute>{page}</ProtectedAdminRoute>
+);
 
 function App() {
   return (
@@ -22,13 +27,13 @@ function App() {
           path="/enseignant/candidature"
           element={<CandidatureEnseignant />}
         />
-        <Route path="/admin/enseignants" element={<Enseignants />} />
+        <Route path="/admin/enseignants" element={protectedPage(<Enseignants />)} />
 
         {/* Administration */}
         <Route path="/admin/login" element={<Login />} />
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/admin/etudiants" element={<Etudiants />} />
-        <Route path="/admin/settings" element={<Settings />} />
+        <Route path="/admin/dashboard" element={protectedPage(<Dashboard />)} />
+        <Route path="/admin/etudiants" element={protectedPage(<Etudiants />)} />
+        <Route path="/admin/settings" element={protectedPage(<Settings />)} />
       </Routes>
     </BrowserRouter>
   );

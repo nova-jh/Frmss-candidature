@@ -1,5 +1,7 @@
 package ma.dpss.candidature.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,12 +15,16 @@ public class Enseignant {
     @Id
     private String id;
 
+    @NotBlank
     private String nomComplet;
 
+    @NotBlank
     private String numeroPpr;
 
     private String telephone;
 
+    @NotBlank
+    @Email
     private String email;
 
     private String cadre;

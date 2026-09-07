@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/excel")
-@CrossOrigin(origins = "http://localhost:5173")
 public class ExcelController {
 
     private final ExcelExportService excelExportService;

@@ -17,10 +17,6 @@ export default function Enseignants() {
     const [selectedEnseignant, setSelectedEnseignant] = useState(null);
     const [openModal, setOpenModal] = useState(false);
 
-    useEffect(() => {
-        charger();
-    }, []);
-
     async function charger() {
 
         try {
@@ -36,6 +32,21 @@ export default function Enseignants() {
         }
 
     }
+
+    useEffect(() => {
+        let cancelled = false;
+        enseignantService.getAll()
+            .then((response) => {
+                if (!cancelled) {
+                    setEnseignants(response.data);
+                }
+            })
+            .catch((error) => console.error(error));
+
+        return () => {
+            cancelled = true;
+        };
+    }, []);
 
     async function supprimer(id) {
 

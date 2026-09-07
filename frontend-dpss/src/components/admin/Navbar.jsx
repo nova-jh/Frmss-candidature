@@ -12,8 +12,6 @@ export default function Navbar() {
 
                 <h2>لوحة الإدارة</h2>
 
-                <p>مديرية النهوض بالرياضة المدرسية</p>
-
             </div>
 
             <div className="navbar-left">

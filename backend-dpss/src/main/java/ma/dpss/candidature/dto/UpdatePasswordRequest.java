@@ -1,5 +1,7 @@
 package ma.dpss.candidature.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdatePasswordRequest {
+    @NotBlank
     private String currentPassword;
+
+    @NotBlank
+    @Size(min = 8)
     private String newPassword;
 }

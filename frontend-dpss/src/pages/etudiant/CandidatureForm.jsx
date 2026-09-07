@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "../../App.css";
 
@@ -13,10 +13,14 @@ import DynamicTable from "../../components/form/DynamicTable";
 import SportSection from "../../components/form/SportSection";
 
 import candidatureService from "../../services/candidatureService";
+import applicationSettingsService from "../../services/applicationSettingsService";
+import "../../styles/applicationStatus.css";
 
 
 
 function CandidatureForm() {
+
+    const [applicationsOpen, setApplicationsOpen] = useState(null);
 
     const [formData, setFormData] = useState({
 
@@ -55,6 +59,20 @@ function CandidatureForm() {
         lieu:""
     }]);
 
+    useEffect(() => {
+        let cancelled = false;
+        applicationSettingsService.getStatus()
+            .then((response) => {
+                if (!cancelled) setApplicationsOpen(response.data.open);
+            })
+            .catch(() => {
+                if (!cancelled) setApplicationsOpen(false);
+            });
+        return () => {
+            cancelled = true;
+        };
+    }, []);
+
     function handleChange(e) {
 
         setFormData({
@@ -78,9 +96,27 @@ function CandidatureForm() {
         alert("تم إرسال الطلب بنجاح.");
       }catch(error){
         console.error(error);
-        alert("حدث خطأ أثناء إرسال الطلب.");
+        alert(error.response?.status === 403
+          ? "باب الترشيحات مغلق حاليا."
+          : "حدث خطأ أثناء إرسال الطلب.");
       }
     };
+
+    if (applicationsOpen === null) {
+        return <div className="app"><Header /></div>;
+    }
+
+    if (!applicationsOpen) {
+        return (
+            <div className="app">
+                <Header />
+                <div className="application-status-message">
+                    <h2>باب الترشيحات مغلق حاليا</h2>
+                    <p>سيتم الإعلان عن موعد فتح باب الترشيحات للموسم المقبل.</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
 

@@ -98,3 +98,33 @@
   background: #aaa;
   cursor: not-allowed;
 }
+
+.applications-control {
+  border-right: 5px solid #b42318;
+}
+
+.applications-control.open {
+  border-right-color: #138a36;
+}
+
+.applications-state {
+  margin-bottom: 16px;
+  color: #555;
+  font-size: 16px;
+}
+
+.status-toggle-btn.close {
+  background: #b42318;
+}
+
+.status-toggle-btn.close:hover {
+  background: #8f1c14;
+}
+
+.status-toggle-btn.open {
+  background: #138a36;
+}
+
+.status-toggle-btn.open:hover {
+  background: #0f6f2b;
+}

@@ -10,31 +10,38 @@ export default function ClassementTabs() {
     const [activeTab, setActiveTab] = useState("moyenne");
     const [candidats, setCandidats] = useState([]);
 
-    async function chargerClassement(type){
-        try{
-            let response;
-            switch(type){
-                case "moyenne":
-                    response = await classementService.getClassementMoyenne();
-                    break;
-                case "national":
-                    response = await classementService.getClassementNational();
-                    break;
-                case "international":
-                    response = await classementService.getClassementInternational();
-                    break;
-                default:
-                    response = await classementService.getClassementMoyenne();
-            }
-            setCandidats(response.data);
-        }
-        catch(error){
-            console.error(error);
-        }
-    }
-
     useEffect(()=>{
-        chargerClassement(activeTab);
+        let cancelled = false;
+
+        async function chargerClassement(){
+            try{
+                let response;
+                switch(activeTab){
+                    case "moyenne":
+                        response = await classementService.getClassementMoyenne();
+                        break;
+                    case "national":
+                        response = await classementService.getClassementNational();
+                        break;
+                    case "international":
+                        response = await classementService.getClassementInternational();
+                        break;
+                    default:
+                        response = await classementService.getClassementMoyenne();
+                }
+                if (!cancelled) {
+                    setCandidats(response.data);
+                }
+            }
+            catch(error){
+                console.error(error);
+            }
+        }
+
+        chargerClassement();
+        return () => {
+            cancelled = true;
+        };
     },[activeTab]);
 
 
@@ -45,7 +52,10 @@ export default function ClassementTabs() {
             const link =document.createElement("a");
             link.href = url;
             link.download = "classement.xlsx";
+            document.body.appendChild(link);
             link.click();
+            link.remove();
+            window.URL.revokeObjectURL(url);
         }
         catch(error){
             console.error(error);

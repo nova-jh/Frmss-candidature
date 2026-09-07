@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import HeaderEnseignant from "../../components/enseignant/HeaderEnseignant";
 import GeneralInfoEnseignant from "../../components/enseignant/GeneralInfoEnseignant";
 import ResultatsNationaux from "../../components/enseignant/ResultatsNationaux";
 import candidatureEnseignantService from "../../services/candidatureEnseignantService";
+import applicationSettingsService from "../../services/applicationSettingsService";
+import "../../styles/applicationStatus.css";
 
 import "./CandidatureEnseignant.css";
 
 export default function CandidatureEnseignant() {
+
+    const [applicationsOpen, setApplicationsOpen] = useState(null);
 
     const [formData, setFormData] = useState({
 
@@ -30,6 +34,20 @@ export default function CandidatureEnseignant() {
         ]
 
     });
+
+    useEffect(() => {
+        let cancelled = false;
+        applicationSettingsService.getStatus()
+            .then((response) => {
+                if (!cancelled) setApplicationsOpen(response.data.open);
+            })
+            .catch(() => {
+                if (!cancelled) setApplicationsOpen(false);
+            });
+        return () => {
+            cancelled = true;
+        };
+    }, []);
 
     function handleChange(e) {
 
@@ -109,10 +127,28 @@ export default function CandidatureEnseignant() {
 
             console.error(error);
 
-            alert("حدث خطأ أثناء الإرسال");
+            alert(error.response?.status === 403
+                ? "باب الترشيحات مغلق حاليا"
+                : "حدث خطأ أثناء الإرسال");
 
         }
 
+    }
+
+    if (applicationsOpen === null) {
+        return <div className="enseignant-page"><HeaderEnseignant /></div>;
+    }
+
+    if (!applicationsOpen) {
+        return (
+            <div className="enseignant-page">
+                <HeaderEnseignant />
+                <div className="application-status-message">
+                    <h2>باب الترشيحات مغلق حاليا</h2>
+                    <p>سيتم الإعلان عن موعد فتح باب الترشيحات للموسم المقبل.</p>
+                </div>
+            </div>
+        );
     }
 
     return (

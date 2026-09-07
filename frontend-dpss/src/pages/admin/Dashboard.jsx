@@ -6,9 +6,6 @@ import "./Dashboard.css";
 const emptyStats = {
   total: 0,
   totalEnseignants: 0,
-  enAttente: 0,
-  acceptees: 0,
-  refusees: 0,
 };
 
 export default function Dashboard() {
@@ -62,10 +59,6 @@ export default function Dashboard() {
           <article className="dashboard-card orange">
             <h2>إجمالي الطلبات</h2>
             <strong>{total}</strong>
-          </article>
-          <article className="dashboard-card red">
-            <h2>الطلبات قيد الانتظار</h2>
-            <strong>{Number(stats.enAttente) || 0}</strong>
           </article>
         </div>
       </section>

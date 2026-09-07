@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import ma.dpss.candidature.model.Candidature;
 import ma.dpss.candidature.model.StatutCandidature;
 import ma.dpss.candidature.service.CandidatureService;
+import ma.dpss.candidature.service.ApplicationSettingsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ma.dpss.candidature.model.DashboardStats;
@@ -14,21 +15,29 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/candidatures")
-@CrossOrigin(origins = "*")
 public class CandidatureController {
 
     private final CandidatureService candidatureService;
+    private final ApplicationSettingsService settingsService;
 
-    public CandidatureController(CandidatureService candidatureService) {
+    public CandidatureController(
+            CandidatureService candidatureService,
+            ApplicationSettingsService settingsService) {
         this.candidatureService = candidatureService;
+        this.settingsService = settingsService;
     }
 
     // ==========================
     // Déposer une candidature
     // ==========================
     @PostMapping
-    public ResponseEntity<Candidature> soumettreCandidature(
+    public ResponseEntity<?> soumettreCandidature(
             @Valid @RequestBody Candidature candidature) {
+
+        if (!settingsService.areApplicationsOpen()) {
+            return ResponseEntity.status(403)
+                    .body(Map.of("message", "باب الترشيحات مغلق حاليا"));
+        }
 
         candidature.setDateSoumission(LocalDateTime.now());
         candidature.setStatut(StatutCandidature.EN_ATTENTE);

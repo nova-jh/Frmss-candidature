@@ -1,0 +1,21 @@
+.application-status-message {
+  max-width: 760px;
+  margin: 50px auto;
+  padding: 32px;
+  border: 2px solid #0f4c81;
+  border-radius: 14px;
+  background: #fff;
+  color: #0f4c81;
+  text-align: center;
+  direction: rtl;
+  box-shadow: 0 4px 18px rgba(15, 76, 129, 0.12);
+}
+
+.application-status-message h2 {
+  margin-bottom: 12px;
+}
+
+.application-status-message p {
+  color: #555;
+  font-size: 17px;
+}

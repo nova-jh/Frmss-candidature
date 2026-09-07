@@ -8,7 +8,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/classement")
-@CrossOrigin(origins = "http://localhost:5173")
 public class ClassementController {
 
     private final ClassementService classementService;

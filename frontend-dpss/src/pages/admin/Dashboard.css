@@ -3,10 +3,24 @@
 .dashboard-status { padding: 14px 18px; margin: 0 0 22px; border-radius: 10px; background: #e8f1fb; color: #0f4c81; }
 .dashboard-error { background: #fff3f3; color: #b42318; }
 .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
-.dashboard-card { border-radius: 15px; padding: 30px; color: #fff; box-shadow: 0 8px 20px rgba(0,0,0,.12); min-height: 145px; }
-.dashboard-card h2 { font-size: 19px; margin: 0 0 20px; font-weight: 600; }
-.dashboard-card strong { display: block; font-size: 45px; line-height: 1; }
-.blue { background: #1976d2; }
-.green { background: #2e7d32; }
-.orange { background: #ef6c00; }
-.red { background: #c62828; }
+.dashboard-card {
+  background: white;
+  border: 1px solid #e1e8f0;
+  border-radius: 15px;
+  padding: 30px;
+  color: #0f4c81;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  min-height: 145px;
+}
+
+.dashboard-card h2 {
+  color: #0f4c81;
+  font-size: 19px;
+  margin: 0 0 20px;
+}
+
+.dashboard-card strong {
+  display: block;
+  color: #0f4c81;
+  font-size: 45px;
+}

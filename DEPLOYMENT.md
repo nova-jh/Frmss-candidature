@@ -2,10 +2,12 @@
 
 ## Backend
 
-Use Java 21 and deploy the `backend-dpss` directory.
+Use Java 21 and deploy the `backend-dpss` directory. On Render, select the Docker runtime; Render builds the included `Dockerfile`.
 
-- Build command: `./mvnw clean package`
-- Start command: `java -jar target/candidature-dpss-0.0.1-SNAPSHOT.jar`
+- Local build command: `./mvnw clean package`
+- Local start command: `java -jar target/candidature-dpss-0.0.1-SNAPSHOT.jar`
+- Render runtime: `Docker`
+- Render Dockerfile path: `./Dockerfile`
 - Health check: `/api/health`
 
 Required environment variables:

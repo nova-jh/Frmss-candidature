@@ -1,0 +1,87 @@
+.student-application {
+    width: 100%;
+    min-width: 0;
+}
+
+.student-application .submit-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 16px;
+}
+
+.student-application .general-grid {
+    grid-template-columns: 220px minmax(0, 1fr);
+}
+
+.student-application .general-grid > * {
+    min-width: 0;
+}
+
+.student-application .sport-table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.student-application .sport-table {
+    min-width: 640px;
+    table-layout: fixed;
+}
+
+.student-application .sport-table th:last-child {
+    width: 72px;
+}
+
+.student-application .application-status-message .submit-btn {
+    margin-top: 16px;
+}
+
+@media (max-width: 600px) {
+    .student-application {
+        padding: 0 12px 24px;
+    }
+
+    .student-application .header-top {
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px 8px;
+    }
+
+    .student-application .title-ar {
+        font-size: 22px;
+    }
+
+    .student-application .title-fr {
+        font-size: 15px;
+    }
+
+    .student-application .banner,
+    .student-application .section-title {
+        font-size: 19px;
+        padding: 12px;
+        overflow-wrap: break-word;
+    }
+
+    .student-application .general-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .student-application .general-grid > input {
+        width: 100%;
+        min-height: 48px;
+        font-size: 16px;
+    }
+
+    .student-application .general-grid label {
+        padding: 10px 12px;
+    }
+
+    .student-application .radio-container {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .student-application .application-status-message {
+        margin: 24px 0;
+        padding: 20px 12px;
+    }
+}

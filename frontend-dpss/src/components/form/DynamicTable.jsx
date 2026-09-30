@@ -52,6 +52,7 @@ function DynamicTable({
 
             </div>
 
+            <div className="sport-table-scroll" role="region" aria-label={title} tabIndex={0}>
             <table className="sport-table">
 
                 <thead>
@@ -144,6 +145,7 @@ function DynamicTable({
                 </tbody>
 
             </table>
+            </div>
 
             <button
                 className="add-btn"

@@ -15,12 +15,15 @@ import SportSection from "../../components/form/SportSection";
 import candidatureService from "../../services/candidatureService";
 import applicationSettingsService from "../../services/applicationSettingsService";
 import "../../styles/applicationStatus.css";
+import "./CandidatureForm.css";
 
 
 
 function CandidatureForm() {
 
     const [applicationsOpen, setApplicationsOpen] = useState(null);
+    const [statusError, setStatusError] = useState(false);
+    const [statusAttempt, setStatusAttempt] = useState(0);
 
     const [formData, setFormData] = useState({
 
@@ -61,17 +64,26 @@ function CandidatureForm() {
 
     useEffect(() => {
         let cancelled = false;
-        applicationSettingsService.getStatus()
+        applicationSettingsService.getStatus({ timeout: 60000 })
             .then((response) => {
+                if (typeof response.data?.open !== "boolean") {
+                    throw new Error("Invalid application status response");
+                }
                 if (!cancelled) setApplicationsOpen(response.data.open);
             })
             .catch(() => {
-                if (!cancelled) setApplicationsOpen(false);
+                if (!cancelled) setStatusError(true);
             });
         return () => {
             cancelled = true;
         };
-    }, []);
+    }, [statusAttempt]);
+
+    function retryStatus() {
+        setStatusError(false);
+        setApplicationsOpen(null);
+        setStatusAttempt((attempt) => attempt + 1);
+    }
 
     function handleChange(e) {
 
@@ -102,13 +114,27 @@ function CandidatureForm() {
       }
     };
 
-    if (applicationsOpen === null) {
-        return <div className="app"><Header /></div>;
+    if (statusError || applicationsOpen === null) {
+        return (
+            <div className="app student-application">
+                <Header />
+                <div className="application-status-message" role={statusError ? "alert" : "status"}>
+                    <h2>{statusError ? "تعذر تحميل الاستمارة" : "جاري تحميل الاستمارة…"}</h2>
+                    <p>{statusError
+                        ? "تحقق من اتصال الإنترنت ثم أعد المحاولة."
+                        : "يرجى الانتظار، قد يستغرق تشغيل الخادم حوالي دقيقة."}</p>
+                    <p lang="fr" dir="ltr">{statusError
+                        ? "Impossible de charger le formulaire. Vérifiez votre connexion et réessayez."
+                        : "Chargement du formulaire : le serveur peut prendre environ une minute à démarrer."}</p>
+                    {statusError && <button type="button" className="submit-btn" onClick={retryStatus}>إعادة المحاولة / Réessayer</button>}
+                </div>
+            </div>
+        );
     }
 
     if (!applicationsOpen) {
         return (
-            <div className="app">
+            <div className="app student-application">
                 <Header />
                 <div className="application-status-message">
                     <h2>باب الترشيحات مغلق حاليا</h2>
@@ -120,7 +146,7 @@ function CandidatureForm() {
 
     return (
 
-        <div className="app">
+        <div className="app student-application">
 
             <Header />
 

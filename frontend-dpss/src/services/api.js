@@ -1,4 +1,5 @@
 import axios from "axios";
+import { clearStoredAdmin, readStoredAdmin } from "./adminStorage";
 
 const configuredApiUrl = import.meta.env.VITE_API_URL;
 
@@ -19,13 +20,9 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-    try {
-        const admin = JSON.parse(localStorage.getItem("admin"));
-        if (admin?.token) {
-            config.headers.Authorization = `Bearer ${admin.token}`;
-        }
-    } catch {
-        localStorage.removeItem("admin");
+    const admin = readStoredAdmin();
+    if (admin?.token) {
+        config.headers.Authorization = `Bearer ${admin.token}`;
     }
     return config;
 });
@@ -34,7 +31,7 @@ api.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response?.status === 401 && !error.config?.url?.endsWith("/admin/login")) {
-            localStorage.removeItem("admin");
+            clearStoredAdmin();
             if (window.location.pathname.startsWith("/admin")) {
                 window.location.assign("/admin/login");
             }

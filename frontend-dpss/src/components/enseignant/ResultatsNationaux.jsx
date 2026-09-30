@@ -20,6 +20,8 @@ export default function ResultatsNationaux({
 
             </div>
 
+            <p className="table-scroll-hint">مرر الجدول أفقياً لعرض جميع الخانات</p>
+            <div className="result-table-scroll" role="region" aria-label="الإنجازات الرياضية" tabIndex={0}>
             <table className="result-table">
 
                 <thead>
@@ -174,6 +176,7 @@ export default function ResultatsNationaux({
                 </tbody>
 
             </table>
+            </div>
 
             <div className="table-buttons">
 

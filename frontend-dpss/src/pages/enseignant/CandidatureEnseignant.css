@@ -126,13 +126,15 @@
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(min(100%, 320px),1fr));
 
     gap:20px;
 
 }
 
 .enseignant-page .field{
+
+    min-width:0;
 
     display:flex;
 
@@ -141,6 +143,12 @@
 }
 
 .enseignant-page .field label{
+
+    border:0;
+
+    padding:0;
+
+    overflow-wrap:break-word;
 
     margin-bottom:8px;
 
@@ -151,6 +159,10 @@
 }
 
 .enseignant-page .field input{
+
+    width:100%;
+
+    min-width:0;
 
     padding:12px;
 
@@ -173,6 +185,10 @@
 }
 
 .enseignant-page .result-table{
+
+    min-width:680px;
+
+    table-layout:fixed;
 
     width:100%;
 
@@ -205,6 +221,8 @@
 }
 
 .enseignant-page .result-table input{
+
+    min-width:0;
 
     width:100%;
 
@@ -306,4 +324,67 @@
 
     background:#256628;
 
+}
+
+.enseignant-page .result-table-scroll{
+    max-width:100%;
+    overflow-x:auto;
+}
+
+.enseignant-page .result-table th:last-child{
+    width:90px;
+}
+
+.enseignant-page .table-scroll-hint{
+    display:none;
+}
+
+@media(max-width:700px){
+    .enseignant-page{
+        padding:16px 12px;
+    }
+
+    .enseignant-page .enseignant-form,
+    .enseignant-page .enseignant-header{
+        width:100%;
+        min-width:0;
+        padding:20px 12px;
+    }
+
+    .enseignant-page .general-grid{
+        grid-template-columns:minmax(0,1fr);
+        gap:16px;
+    }
+
+    .enseignant-page .field input{
+        min-height:44px;
+        font-size:16px;
+    }
+
+    .enseignant-page .header-title h1,
+    .enseignant-page .header-title h2{
+        font-size:21px;
+        overflow-wrap:break-word;
+    }
+
+    .enseignant-page .header-title h3{
+        font-size:16px;
+    }
+
+    .enseignant-page .section-title{
+        padding:12px;
+        font-size:17px;
+        overflow-wrap:break-word;
+    }
+
+    .enseignant-page .table-scroll-hint{
+        display:block;
+        color:#555;
+        font-size:14px;
+        margin-bottom:8px;
+    }
+
+    .enseignant-page .result-table input{
+        font-size:16px;
+    }
 }

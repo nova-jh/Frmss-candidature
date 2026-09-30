@@ -13,6 +13,7 @@ Use Java 21 and deploy the `backend-dpss` directory. On Render, select the Docke
 Required environment variables:
 
 - `MONGODB_URI`: production MongoDB connection string, including the database name.
+- This variable is mapped to `spring.mongodb.uri` (Spring Boot 4). Do not use the old `spring.data.mongodb.uri` property: it is ignored and the client falls back to localhost.
 - `CORS_ALLOWED_ORIGINS`: exact HTTPS frontend origin, without a trailing slash. Separate multiple origins with commas.
 - `JWT_SECRET`: a random secret of at least 32 characters. Never commit it.
 - `ADMIN_EMAIL` and `ADMIN_PASSWORD`: create the first administrator only when the `admins` collection is empty. The password must have at least 8 characters.
